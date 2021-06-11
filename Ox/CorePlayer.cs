@@ -33,6 +33,7 @@ public class CorePlayer : MonoBehaviour {
 		delta.x = Input.GetAxis ( "Horizontal" );
 		delta.y = Input.GetAxis ( "Jump" );
 		delta.z = Input.GetAxis ( "Vertical" );
+
 		coreM.InputTick ( delta );
 	}
 

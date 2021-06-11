@@ -13,7 +13,7 @@ public class CoreMovement : MonoBehaviour {
 	private Rigidbody   target;
 
 	public void InputTick( Vector3 a1 ) {
-		tickDelta += a1;
+		tickDelta += target.rotation * a1;
 		tickCount += Vector3Int.one;
 	}
 
@@ -28,13 +28,13 @@ public class CoreMovement : MonoBehaviour {
 
 		target.MovePosition ( transform.position + speedDelta * Time.fixedDeltaTime );
 
-		speedDelta = Quaternion.RotateTowards ( rotDelta, target.rotation, 360 ) * speedDelta;
+		//speedDelta = Quaternion.RotateTowards ( rotDelta, target.rotation, 360 ) * speedDelta;
 
 		speedDelta += Vector3.Scale( tickDelta, speed );
 
 		speedDelta -= speedDelta * drag * Time.fixedDeltaTime;
 
-		rotDelta = target.rotation;
+		//rotDelta = target.rotation;
 		tickCount = Vector3Int.zero;
 		tickDelta = Vector3.zero;
 	}
