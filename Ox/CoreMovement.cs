@@ -5,16 +5,28 @@ public class CoreMovement : MonoBehaviour {
 	public  float	    drag;
 
 	private Vector3		tickDelta;
-	private Vector3Int	tickCount;
+	private int			tickCount;
 
 	private Vector3     speedDelta;
-	private Quaternion  rotDelta;
 
 	private Rigidbody   target;
 
 	public void InputTick( Vector3 a1 ) {
 		tickDelta += target.rotation * a1;
-		tickCount += Vector3Int.one;
+		tickCount++;
+	}
+
+	public void Override ( Vector3 a1 ) {
+		speedDelta = Vector3.zero;
+		speed = Vector3Int.one;
+		drag = 0;
+		tickDelta = a1;
+		tickCount = 1;
+		target.useGravity = false;
+	}
+
+	public void EndOverride () {
+		target.useGravity = true;
 	}
 
 	private void Start () {
@@ -22,20 +34,19 @@ public class CoreMovement : MonoBehaviour {
 	}
 
 	private void FixedUpdate () {
-		if( tickCount.x != 0 ) tickDelta.x /= tickCount.x;
-		if( tickCount.y != 0 ) tickDelta.y /= tickCount.y;
-		if( tickCount.z != 0 ) tickDelta.z /= tickCount.z;
+		if ( tickCount != 0 ) {
+			tickDelta.x /= tickCount;
+			tickDelta.y /= tickCount;
+			tickDelta.z /= tickCount;
+		}
 
 		target.MovePosition ( transform.position + speedDelta * Time.fixedDeltaTime );
-
-		//speedDelta = Quaternion.RotateTowards ( rotDelta, target.rotation, 360 ) * speedDelta;
 
 		speedDelta += Vector3.Scale( tickDelta, speed );
 
 		speedDelta -= speedDelta * drag * Time.fixedDeltaTime;
 
-		//rotDelta = target.rotation;
-		tickCount = Vector3Int.zero;
+		tickCount = 0;
 		tickDelta = Vector3.zero;
 	}
 }
