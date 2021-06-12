@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaeb61eabd02e647a3b711554c71788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 1, y: 1, z: 1}
-  drag: 1
+  Speed: 1
+  Drag: 3
 --- !u!114 &7240919527030544179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3223a68433a89a74fa3c25ca6bcc5675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Ball: {fileID: 0}
   Transform: {fileID: 7240919527030544136}
   Rigidbody: {fileID: 7240919527030544180}
   CoreMovement: {fileID: 7240919527030544139}

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 public class Lock : MonoBehaviour {
-    public  Transform   target;
-    public  float       strength;
+    public Transform Target;
+    public float Strength;
 
-    void Update () {
-        transform.position = Vector3.Lerp ( transform.position, target.position, strength );
+    void Update() {
+        transform.position = Vector3.Lerp(transform.position, Target.position, Strength);
     }
 }
