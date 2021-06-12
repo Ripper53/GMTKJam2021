@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class CorePlayer : MonoBehaviour {
 	public Transform Transform;
-	public Collider Collider;
+	public CapsuleCollider Collider;
+	public LayerMask DashLayerMask;
 	public CoreBall CoreBall;
+	public CoreBallContact CoreBallContact;
 	public CoreView CoreView;
 
 	public float MoveSpeed;
@@ -20,8 +22,6 @@ public class CorePlayer : MonoBehaviour {
 	private bool dashing;
 	private bool chargeCatch;
 
-	private bool onGround;
-
 	void Start() {
 		coreMovement = GetComponent<CoreMovement>();
 	}
@@ -33,13 +33,6 @@ public class CorePlayer : MonoBehaviour {
 				if (!dashing) {
 					BeginDash();
 					CoreBall.Fixate();
-#if UNITY_EDITOR
-					//DEBUG
-					Debug.DrawRay(transform.position, (CoreBall.transform.position - transform.position).normalized, Color.blue, 100000);
-					Debug.DrawRay(CoreBall.transform.position - Vector3.up / 2, Vector3.up, Color.red, 100000);
-					Debug.DrawRay(CoreBall.transform.position - Vector3.right / 2, Vector3.right, Color.red, 100000);
-					//Debug.Break ();
-#endif
 				}
 			} else {
 				chargeCatch = true;
@@ -76,17 +69,84 @@ public class CorePlayer : MonoBehaviour {
 			dashFill = 1f;
 			EndDash();
         }
+
 		Vector3 targetPos = CoreBall.GetPosition();
-		RaycastHit[] hits = coreMovement.Rigidbody.SweepTestAll(CoreBall.GetPosition() - dashOrigin, Vector2.Distance(dashOrigin, CoreBall.GetPosition()), QueryTriggerInteraction.Ignore);
-		if (hits.Length > 0) {
+		RaycastEnd(ref targetPos);
+		Transform.position = Vector3.Lerp(dashOrigin, targetPos, dashFill);
+	}
+
+	private void RaycastEnd(ref Vector3 targetPos) {
+
+		if (CoreBallContact.InContact)
+			targetPos = CoreBallContact.Contact;
+
+		Vector3 h = new Vector3(0f, Collider.height / 2f, 0f);
+		/*Collider[] colliders = Physics.OverlapCapsule(
+			targetPos + h,
+			targetPos - h,
+			Collider.radius,
+			DashLayerMask,
+			QueryTriggerInteraction.Ignore
+		);*/
+		/*Collider[] colliders = Physics.OverlapSphere(
+			targetPos, 0.1f, DashLayerMask, QueryTriggerInteraction.Ignore
+		);
+		if (colliders.Length == 0) return;*/
+
+		/*foreach (Collider hit in hits) {
+			if (hit.CompareTag("Ball") || hit.CompareTag("Player")) continue;
+			if (hit.ClosestPoint(targetPos) != targetPos) {
+				targetPos.y += Collider.radius;
+				break;
+			}
+        }*/
+
+		/*Vector3 pos = GetPosition();
+
+		RaycastHit[] hits = Physics.CapsuleCastAll(
+			pos + h,
+			pos - h,
+			Collider.radius,
+			targetPos - pos,
+			Vector3.Distance(targetPos, pos),
+			DashLayerMask
+		);
+
+		for (int i = hits.Length - 1; i > -1; i--) {
+			RaycastHit hit = hits[i];
+			foreach (Collider col in colliders) {
+				if (hit.collider == col && hit.collider.ClosestPoint(targetPos) != targetPos) {
+					Vector3 point = hit.point;
+					Vector3 diff = pos - Collider.ClosestPoint(point);
+					targetPos = point + diff;
+					break;
+				}
+			}
+		}*/
+		/*RaycastHit[] hits = Physics.CapsuleCastAll(
+			pos + new Vector3(0f, Collider.radius, 0f),
+			pos + new Vector3(0f, Collider.height - Collider.radius, 0f),
+			Collider.radius - Physics.defaultContactOffset,
+			targetPos - pos,
+			Vector3.Distance(targetPos, pos)
+		);*/
+		/*if (hits.Length > 0) {
 			RaycastHit hit = hits[hits.Length - 1];
+			Debug.Log("First: " + hit.collider.name + ", " + hits.Length);
+			if (hit.collider.CompareTag("Ball")) {
+				if (hits.Length > 1)
+					hit = hits[hits.Length - 2];
+				else
+					return;
+			}
+			Debug.Log("Second: " + hit.collider.name);
 			if (hit.collider.ClosestPoint(targetPos) == targetPos) {
+				Debug.Log("SAME");
 				Vector3 point = hit.point;
 				Vector3 diff = Collider.ClosestPoint(point) - Collider.transform.position;
 				targetPos = point + diff;
 			}
-		}
-		Transform.position = Vector3.Lerp(dashOrigin, targetPos, dashFill);
+		}*/
 	}
 
 	public void Returned() {
@@ -99,8 +159,8 @@ public class CorePlayer : MonoBehaviour {
 		dashing = true;
 		coreMovement.Rigidbody.detectCollisions = false;
 		coreMovement.Rigidbody.isKinematic = true;
-		coreMovement.Rigidbody.velocity = Vector2.zero;
 		coreMovement.enabled = false;
+		coreMovement.Reinitialize();
 		dashFill = 0f;
 		dashOrigin = Transform.position;
     }
@@ -111,5 +171,7 @@ public class CorePlayer : MonoBehaviour {
 		coreMovement.enabled = true;
 		dashing = false;
 	}
+
+	public Vector3 GetPosition() => coreMovement.Rigidbody.position;
 
 }

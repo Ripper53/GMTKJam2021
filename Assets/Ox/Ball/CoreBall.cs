@@ -9,8 +9,6 @@ public class CoreBall : MonoBehaviour {
     private Rigidbody target;
     
     private bool deployed;
-    private float storedEnergy = 15;
-    private float energyDropoff = 2.5f;
 
     void Start () {
         target = GetComponent<Rigidbody> ();
