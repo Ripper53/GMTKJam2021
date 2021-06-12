@@ -7,6 +7,8 @@ public class CoreBall : MonoBehaviour {
     private Rigidbody   target;
     
     private     bool    deployed;
+    private float       storedEnergy = 15;
+    private float       energyDropoff = 2.5f;
 
     void Start () {
         target = GetComponent<Rigidbody> ();
@@ -41,6 +43,8 @@ public class CoreBall : MonoBehaviour {
         if ( collision.gameObject.tag == targetP.tag ) {
             Grab ();
             targetP.GetComponent<CorePlayer> ().Returned ();
+        } else {
+           // Vector3.Project ( collision.GetContact ( 0 ).normal );
         }
 	}
 

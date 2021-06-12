@@ -26,7 +26,12 @@ public class CoreMovement : MonoBehaviour {
 	}
 
 	public void EndOverride () {
+		speedDelta /= 3;
 		target.useGravity = true;
+	}
+
+	public Vector3 GetDeltaSpeed () {
+		return speedDelta;
 	}
 
 	private void Start () {
