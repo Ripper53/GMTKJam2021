@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class CoreBall : MonoBehaviour {
-    public  Transform   targetP;
+    public  Transform   TargetParent;
     private Transform   baseT;
     
     private Rigidbody   target;
@@ -19,7 +19,7 @@ public class CoreBall : MonoBehaviour {
     public void Grab() {
         deployed = false;
         target.velocity = Vector3.zero;
-        transform.SetParent ( targetP );
+        transform.SetParent ( TargetParent );
         transform.localPosition = Vector3.zero;
 	}
 
@@ -40,9 +40,9 @@ public class CoreBall : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter ( Collision collision ) {
-        if ( collision.gameObject.tag == targetP.tag ) {
+        if ( collision.gameObject.tag == TargetParent.tag ) {
             Grab ();
-            targetP.GetComponent<CorePlayer> ().Returned ();
+            TargetParent.GetComponent<CorePlayer> ().Returned ();
         } else {
            // Vector3.Project ( collision.GetContact ( 0 ).normal );
         }

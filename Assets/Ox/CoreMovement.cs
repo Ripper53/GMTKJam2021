@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 
 public class CoreMovement : MonoBehaviour {
-	public	Vector3		speed;
-	public  float	    drag;
+	public float Speed;
+	public float Drag;
 
-	private Vector3		tickDelta;
-	private int			tickCount;
+	private Vector3 tickDelta;
+	private int tickCount;
 
-	private Vector3     speedDelta;
+	private Vector3 speedDelta;
 
-	private Rigidbody   target;
+	private Rigidbody target;
 
 	public void InputTick( Vector3 a1 ) {
-		tickDelta += target.rotation * a1;
+		tickDelta += target.rotation * a1.normalized;
 		tickCount++;
 	}
 
 	public void Override ( Vector3 a1 ) {
 		speedDelta = Vector3.zero;
-		speed = Vector3Int.one;
-		drag = 0;
+		Speed = 1f;
+		Drag = 0;
 		tickDelta = a1;
 		tickCount = 1;
 		target.useGravity = false;
@@ -40,16 +40,14 @@ public class CoreMovement : MonoBehaviour {
 
 	private void FixedUpdate () {
 		if ( tickCount != 0 ) {
-			tickDelta.x /= tickCount;
-			tickDelta.y /= tickCount;
-			tickDelta.z /= tickCount;
+			tickDelta /= tickCount;
 		}
 
 		target.MovePosition ( transform.position + speedDelta * Time.fixedDeltaTime );
 
-		speedDelta += Vector3.Scale( tickDelta, speed );
+		speedDelta += tickDelta * Speed;
 
-		speedDelta -= speedDelta * drag * Time.fixedDeltaTime;
+		speedDelta -= speedDelta * Drag * Time.fixedDeltaTime;
 
 		tickCount = 0;
 		tickDelta = Vector3.zero;

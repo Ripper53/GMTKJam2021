@@ -2,32 +2,32 @@
 using System;
 
 public class CorePlayer : MonoBehaviour {
-	public  CoreBall        coreB;
-	public  CoreView        coreV;
+	public CoreBall CoreBall;
+	public CoreView CoreView;
 
-	public  float           ballSpeed;
-	public  float           dashSpeed;
+	public float BallSpeed;
+	public float DashSpeed;
 
-	private CoreMovement    coreM;
+	private CoreMovement coreMovement;
 
-	private float           chargeDelta;
-	public  float           chargeMax;
-	public  float           chargeRate;
-	public  float           chargeReset;
+	private float chargeDelta;
+	public float ChargeMax;
+	public float ChargeRate;
+	public float ChargeReset;
 
-	private Vector3     deltaLastInput;
-	private Vector3Int  deltaRaises;
+	private Vector3 deltaLastInput;
+	private Vector3Int deltaRaises;
 
-	static float        inputDeadzone = 0.05f;
+	static float inputDeadzone = 0.05f;
 
-	private bool        dashing;
-	private bool        chargeCatch;
+	private bool dashing;
+	private bool chargeCatch;
 
-	private int         maxFaults = 5;
-	private int         deltaFaults;
-	private float       safeguard;
+	private int maxFaults = 5;
+	private int deltaFaults;
+	private float safeguard;
 
-	private bool        onGround;
+	private bool onGround;
 
 	private int RaiseFunction ( float a1, float a2 ) {
 		if ( Math.Abs ( a1 ) > Math.Abs ( a2 ) ) { return 1 * Math.Sign( a1 ); }
@@ -45,7 +45,7 @@ public class CorePlayer : MonoBehaviour {
 	}
 
 	void Start () {
-		coreM = GetComponent<CoreMovement> ();
+		coreMovement = GetComponent<CoreMovement> ();
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
@@ -58,13 +58,13 @@ public class CorePlayer : MonoBehaviour {
 		InputTick ( delta );
 	
 		if ( !dashing ) {
-			coreM.InputTick ( deltaRaises );
+			coreMovement.InputTick ( deltaRaises );
 		} else {
-			float deltaClose = ( coreB.transform.position - transform.position ).sqrMagnitude;
+			float deltaClose = ( CoreBall.transform.position - transform.position ).sqrMagnitude;
 			if ( deltaClose > safeguard ) {
 				deltaFaults--;
 				if ( deltaFaults < 0 ) {
-					coreB.Grab ();
+					CoreBall.Grab ();
 					Returned ();
 				}
 			}
@@ -72,56 +72,58 @@ public class CorePlayer : MonoBehaviour {
 		}
 
 		if ( Input.GetMouseButtonDown( 0 ) ) {
-			if ( coreB.IsDeployed () ) {
+			if ( CoreBall.IsDeployed () ) {
 				if ( //Physics.Raycast ( transform.position, coreB.transform.position - transform.position ) && 
 					!dashing ) {
 					dashing = true;
-					coreB.Fixate ();
-					coreM.Override ( ( coreB.transform.position - transform.position ).normalized * dashSpeed );
-					safeguard = ( coreB.transform.position - transform.position ).sqrMagnitude;
+					CoreBall.Fixate ();
+					coreMovement.Override ( ( CoreBall.transform.position - transform.position ).normalized * DashSpeed );
+					safeguard = ( CoreBall.transform.position - transform.position ).sqrMagnitude;
+#if UNITY_EDITOR
 					//DEBUG
-					Debug.DrawRay ( transform.position, ( coreB.transform.position - transform.position ).normalized, Color.blue, 100000 );
-					Debug.DrawRay ( coreB.transform.position-Vector3.up/2, Vector3.up, Color.red, 100000 );
-					Debug.DrawRay ( coreB.transform.position-Vector3.right/2, Vector3.right, Color.red, 100000 );
+					Debug.DrawRay ( transform.position, ( CoreBall.transform.position - transform.position ).normalized, Color.blue, 100000 );
+					Debug.DrawRay ( CoreBall.transform.position-Vector3.up/2, Vector3.up, Color.red, 100000 );
+					Debug.DrawRay ( CoreBall.transform.position-Vector3.right/2, Vector3.right, Color.red, 100000 );
 					//Debug.Break ();
+#endif
 				}
 			}
 		}
 
-		if ( !coreB.IsDeployed () ) {
+		if ( !CoreBall.IsDeployed () ) {
 			if ( Input.GetMouseButtonUp ( 0 ) ) {
 				chargeCatch = true;
 				if ( chargeDelta > 0 ) {
 					deltaFaults = maxFaults;
-					if ( chargeDelta > chargeMax ) { chargeDelta = chargeMax; }
-					coreB.Deploy ( coreV.GetSpawnPoint () );
-					coreB.Deflect ( coreV.GetSpawnDirection () * ( chargeDelta / chargeMax ) * ballSpeed );
+					if ( chargeDelta > ChargeMax ) { chargeDelta = ChargeMax; }
+					CoreBall.Deploy ( CoreView.GetSpawnPoint () );
+					CoreBall.Deflect ( CoreView.GetSpawnDirection () * ( chargeDelta / ChargeMax ) * BallSpeed );
 					chargeDelta = 0;
 				}
 			}
 			if ( Input.GetMouseButton ( 0 ) && chargeCatch ) {
-				chargeDelta += Time.deltaTime * chargeRate;
-				if ( chargeDelta > chargeReset ) {
+				chargeDelta += Time.deltaTime * ChargeRate;
+				if ( chargeDelta > ChargeReset ) {
 					chargeCatch = false;
 					chargeDelta = 0;
 				}
 			}
 			if ( !Physics.Raycast ( transform.position, Vector3.down, 1.5f ) ) {
-				coreM.drag = 0.1f;
-				coreM.speed = new Vector3 ( 0.001f, 0, 0.001f );
+				coreMovement.Drag = 0.1f;
+				coreMovement.Speed = 0.001f;
 				onGround = false;
 			} else {
-				coreM.drag = 3;
-				coreM.speed = new Vector3 ( 1, 0, 1 );
+				coreMovement.Drag = 3;
+				coreMovement.Speed = 1f;
 				onGround = true;
 			}
 		}
 	}
 
 	public void Returned () {
-		coreV.EndOverride ();
-		coreM.EndOverride ();
-		coreM.drag = 3;
+		CoreView.EndOverride ();
+		coreMovement.EndOverride ();
+		coreMovement.Drag = 3;
 		dashing = false;
 	}
 

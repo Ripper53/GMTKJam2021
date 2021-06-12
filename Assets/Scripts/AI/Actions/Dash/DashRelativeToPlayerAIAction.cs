@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace AI {
@@ -10,7 +9,7 @@ namespace AI {
 
         protected override Vector3 GetDirection(AIToken token) {
             dir = -dir;
-            return Quaternion.Euler(DirectionOffset * dir) * base.GetDirection(token);
+            return Quaternion.Euler(DirectionOffset * dir) * token.Source.GetToPlayerDirection().normalized;
         }
 
     }

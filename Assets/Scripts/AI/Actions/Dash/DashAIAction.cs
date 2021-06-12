@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI {
-    public class DashAIAction : AIAction {
+    public abstract class DashAIAction : AIAction {
         [Tooltip("The speed of the dash, in combination with its time will result in different dash distances.")]
         public float Speed;
         [Tooltip("How long to dash for?")]
@@ -16,17 +15,23 @@ namespace AI {
             if (!isOn) return;
             isOn = false;
 
-            Vector3 dir = GetDirection(token) * Speed;    // Get the direction of the dash.
-            StartCoroutine(CooldownTimer(token, dir)); // Start cooldown.
+            // Get the direction of the dash.
+            Vector3 dir = GetDirection(token) * Speed;
+
+            // Start cooldown.
+            StartCoroutine(CooldownTimer(token, dir));
 
             token.Source.CoreMovement.InputTick(dir);
         }
 
-        protected virtual Vector3 GetDirection(AIToken token) => token.Source.GetToPlayerDirection().normalized;
+        /// <returns>The direction of the dash.</returns>
+        protected abstract Vector3 GetDirection(AIToken token);
 
         private IEnumerator CooldownTimer(AIToken token, Vector3 dir) {
+            // Continue to apply movement so A.I. does not slow down during the dash, only after it.
             Coroutine dashCoroutine = StartCoroutine(ConstantDash(token, dir));
             yield return new WaitForSeconds(Time);
+            // Stop applying movement, allowing the A.I. to slow down.
             StopCoroutine(dashCoroutine);
             yield return new WaitForSeconds(Cooldown);
             isOn = true;
