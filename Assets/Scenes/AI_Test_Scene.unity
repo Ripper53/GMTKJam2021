@@ -343,6 +343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dash AI
       objectReference: {fileID: 0}
+    - target: {fileID: 1925784683087645524, guid: ff11e35ca31371f49a5fdc764711a546, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1925784683087645549, guid: ff11e35ca31371f49a5fdc764711a546, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -389,3 +393,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff11e35ca31371f49a5fdc764711a546, type: 3}
+--- !u!1001 &2655726673065900508
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877014, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877039, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_Name
+      value: Shield AI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658939337793877039, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7adc2e238622f854aaccc5781977ca9c, type: 3}

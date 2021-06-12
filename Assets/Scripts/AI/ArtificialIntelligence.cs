@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace AI {
     public class ArtificialIntelligence : MonoBehaviour {
+        [Header("World")]
+        public CorePlayer Player;
+        public CoreBall Ball;
+        [Header("Self")]
         public Transform Transform;
         public Rigidbody Rigidbody;
         public CoreMovement CoreMovement;
