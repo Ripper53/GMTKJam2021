@@ -16,22 +16,29 @@ public class CoreBall : MonoBehaviour {
         Grab();
     }
 
-
+    public delegate void GrabbedAction(CoreBall source);
+    public event GrabbedAction Grabbed;
     private bool canGrab = true;
     public bool Grab() {
         if (!canGrab) return false;
+        ForceGrab();
+        return true;
+	}
+    public void ForceGrab() {
         GameObject.SetActive(false);
         deployed = false;
         transform.SetParent(TargetPlayer.Transform);
         transform.localPosition = Vector3.zero;
-        return true;
-	}
+        Grabbed?.Invoke(this);
+    }
 
     public void Fixate() {
         target.isKinematic = true;
         target.velocity = Vector3.zero;
     }
 
+    public delegate void DeployedAction(CoreBall source);
+    public event DeployedAction Deployed;
     public void Deploy ( Vector3 pos, Vector3 vel ) {
         canGrab = false;
         TargetPlayer.StartCoroutine(GrabCooldown());
@@ -41,6 +48,7 @@ public class CoreBall : MonoBehaviour {
         transform.position = pos;
         GameObject.SetActive(true);
         target.velocity = vel;
+        Deployed?.Invoke(this);
     }
 
 	private void OnCollisionStay ( Collision collision ) {

@@ -6,7 +6,7 @@ namespace AI {
 
         public override void Execute(AIToken token) {
             Vector3 dir = token.Source.GetToPlayerDirection().normalized;
-            token.Source.CoreMovement.InputTick(dir);
+            token.Source.CoreMovement.AddVelocity(dir);
         }
 
     }

@@ -2,20 +2,14 @@
 
 public class CoreMovement : MonoBehaviour {
 	public Rigidbody Rigidbody;
-	public float Drag;
 
-	private Vector3 tickDelta;
-	private Vector3 speedDelta;
+	private Vector3 speedDelta = Vector2.zero;
 
-	public void InputTick(Vector3 a1) {
-		tickDelta += Rigidbody.rotation * a1;
+	public void AddVelocity(Vector3 vel) {
+		speedDelta += Rigidbody.rotation * vel;
 	}
 
-	public Vector3 GetDeltaSpeed() {
-		return speedDelta;
-	}
-
-	private void FixedUpdate() {
+	protected void FixedUpdate() {
 		Vector3 vel = Rigidbody.velocity;
 		if (speedDelta.x != 0f)
 			vel.x = speedDelta.x;
@@ -23,13 +17,8 @@ public class CoreMovement : MonoBehaviour {
 			vel.y = speedDelta.y;
 		if (speedDelta.z != 0f)
 			vel.z = speedDelta.z;
+		speedDelta = Vector3.zero;
 		Rigidbody.velocity = vel;
-
-		speedDelta += tickDelta;
-
-		speedDelta -= speedDelta * Drag * Time.fixedDeltaTime;
-
-		tickDelta = Vector3.zero;
 	}
 
 	public void Reinitialize() {

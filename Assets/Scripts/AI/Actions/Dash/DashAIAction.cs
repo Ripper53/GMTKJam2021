@@ -21,7 +21,7 @@ namespace AI {
             // Start cooldown.
             StartCoroutine(CooldownTimer(token, dir));
 
-            token.Source.CoreMovement.InputTick(dir);
+            token.Source.CoreMovement.AddVelocity(dir);
         }
 
         /// <returns>The direction of the dash.</returns>
@@ -40,7 +40,7 @@ namespace AI {
         private IEnumerator ConstantDash(AIToken token, Vector3 dir) {
             while (true) {
                 yield return new WaitForFixedUpdate();
-                token.Source.CoreMovement.InputTick(dir);
+                token.Source.CoreMovement.AddVelocity(dir);
             }
         }
 
