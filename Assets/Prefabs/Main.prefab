@@ -975,6 +975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064726657930311471}
   - component: {fileID: 953774280014066817}
+  - component: {fileID: 5570543067797560249}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -1014,6 +1015,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves: []
+--- !u!114 &5570543067797560249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330658219647404469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653b17a49ff6ae54c8406680cdb8f6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Time: 3
 --- !u!1 &8734668978870346031
 GameObject:
   m_ObjectHideFlags: 0
