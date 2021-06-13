@@ -5,13 +5,13 @@ public class CoreBall : MonoBehaviour {
     public CorePlayer TargetPlayer;
     public GameObject GameObject;
     private Transform baseT;
-    
+
     private Rigidbody target;
-    
+
     private bool deployed;
 
-    void Start () {
-        target = GetComponent<Rigidbody> ();
+    void Start() {
+        target = GetComponent<Rigidbody>();
         baseT = transform.parent;
         Grab();
     }
@@ -23,7 +23,7 @@ public class CoreBall : MonoBehaviour {
         if (!canGrab) return false;
         ForceGrab();
         return true;
-	}
+    }
     public void ForceGrab() {
         GameObject.SetActive(false);
         deployed = false;
@@ -39,7 +39,7 @@ public class CoreBall : MonoBehaviour {
 
     public delegate void DeployedAction(CoreBall source);
     public event DeployedAction Deployed;
-    public void Deploy ( Vector3 pos, Vector3 vel ) {
+    public void Deploy(Vector3 pos, Vector3 vel) {
         canGrab = false;
         TargetPlayer.StartCoroutine(GrabCooldown());
         deployed = true;
@@ -51,15 +51,15 @@ public class CoreBall : MonoBehaviour {
         Deployed?.Invoke(this);
     }
 
-	private void OnCollisionStay ( Collision collision ) {
+    private void OnCollisionStay(Collision collision) {
         if (collision.gameObject.CompareTag(TargetPlayer.tag) && Grab()) {
             TargetPlayer.Returned();
         } else {
-           // Vector3.Project ( collision.GetContact ( 0 ).normal );
+            // Vector3.Project ( collision.GetContact ( 0 ).normal );
         }
-	}
+    }
 
-    public bool IsDeployed () {
+    public bool IsDeployed() {
         return deployed;
     }
 

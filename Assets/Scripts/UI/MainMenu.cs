@@ -8,4 +8,13 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(PlaySceneName);
     }
 
+    [SerializeField]
+    private GameObject previousMenu;
+    public void ActivateMenu(GameObject menu) {
+        if (previousMenu)
+            previousMenu.SetActive(false);
+        menu.SetActive(true);
+        previousMenu = menu;
+    }
+
 }

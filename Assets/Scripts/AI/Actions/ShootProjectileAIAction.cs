@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AI {
     public abstract class ShootProjectileAIAction : AIAction {
-        public Rigidbody ProjectilePrefab;
+        public ProjectilePooler ProjectilePooler;
         public Transform Origin;
         public float Speed;
         public float Cooldown;
@@ -18,7 +18,8 @@ namespace AI {
             if (!isOn) return;
             isOn = false;
             StartCoroutine(StartCooldown());
-            Rigidbody projectile = Instantiate(ProjectilePrefab, Origin.position, Origin.rotation);
+            Rigidbody projectile = ProjectilePooler.Get();
+            projectile.transform.position = Origin.position;
             projectile.gameObject.SetActive(true);
             projectile.velocity = GetDirection(token) * Speed;
             ArtificialIntelligenceAudio.Play(ShootAudioClip);

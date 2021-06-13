@@ -237,7 +237,7 @@ MonoBehaviour:
   MoveSpeed: 5
   BallSpeed: 25
   DashSpeed: 10
-  DashMomentum: 15
+  DashMomentum: 20
   SlowMotionScale: 0.01
   SlowMotionTime: 0.5
   ChargeMax: 15

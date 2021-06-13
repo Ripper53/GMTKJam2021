@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3248774440214341629}
   - component: {fileID: 8293457074842272625}
+  - component: {fileID: 5497459566005746461}
   m_Layer: 9
   m_Name: Shoot
   m_TagString: Untagged
@@ -43,12 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606cfd3c520fa6c48993571c776d7209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 853177000709243631, guid: 8c755f88702a33949ad4875369e138cc, type: 3}
+  ProjectilePooler: {fileID: 5497459566005746461}
   Origin: {fileID: 3248774440214341629}
   Speed: 20
   Cooldown: 1
   ArtificialIntelligenceAudio: {fileID: 6955615376826765991}
   ShootAudioClip: {fileID: 8300000, guid: 9d1e6c3934bef894fad4574f5bd9c7df, type: 3}
+--- !u!114 &5497459566005746461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848567094710670418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52cbd50c5af957c4fa949dea8830cc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Projectile: {fileID: 853177000709243631, guid: 8c755f88702a33949ad4875369e138cc, type: 3}
 --- !u!1001 &649103861299845201
 PrefabInstance:
   m_ObjectHideFlags: 0

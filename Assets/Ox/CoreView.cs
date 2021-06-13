@@ -13,6 +13,7 @@ public class CoreView : MonoBehaviour {
 			rootZ = target.GetChild(0);
 			rootX = rootZ.GetChild(0);
 		}
+		aSensitivity = new Vector2(SettingsMenu.Sensitivity, SettingsMenu.Sensitivity);
 	}
 
 	public Vector2 aSensitivity;
@@ -53,7 +54,7 @@ public class CoreView : MonoBehaviour {
 	}
 
 	public Vector3 GetSpawnPoint() {
-		return rootX.position + rootX.forward;
+		return rootX.position;
 	}
 
 	public Vector3 GetSpawnDirection() {

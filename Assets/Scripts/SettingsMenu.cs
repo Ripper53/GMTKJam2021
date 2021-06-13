@@ -1,18 +1,24 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour {
     public GameObject Menu;
     public CorePlayer CorePlayer;
+    public CoreView CoreView;
     public AudioMixer AudioMixer;
     public Slider SFXVolumeSlider, MusicVolumeSlider;
+    public TMP_InputField SensitivityInputField;
 
     public static float SFXVolume = 1f, MusicVolume = 1f;
+    public static float Sensitivity = 1f;
 
     protected void Awake() {
         SFXVolumeSlider.SetValueWithoutNotify(SFXVolume);
         MusicVolumeSlider.SetValueWithoutNotify(MusicVolume);
+
+        SensitivityInputField.SetTextWithoutNotify(Sensitivity.ToString());
 
         SFXVolumeSlider.onValueChanged.AddListener(v => {
             SFXVolume = AudioVolume(v);
@@ -21,6 +27,13 @@ public class SettingsMenu : MonoBehaviour {
         MusicVolumeSlider.onValueChanged.AddListener(v => {
             MusicVolume = AudioVolume(v);
             AudioMixer.SetFloat("MusicVolume", MusicVolume);
+        });
+
+        SensitivityInputField.onValueChanged.AddListener(v => {
+            if (float.TryParse(v, out float result)) {
+                Sensitivity = result;
+                CoreView.aSensitivity = new Vector2(Sensitivity, Sensitivity);
+            }
         });
     }
 
