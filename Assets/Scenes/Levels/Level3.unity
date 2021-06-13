@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 2711115265733469696, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
       propertyPath: Music
       value: 
-      objectReference: {fileID: 8300000, guid: 558806f3e8dcb3b468378b4371e7aaec, type: 3}
+      objectReference: {fileID: 8300000, guid: 51e7c89dc80004847b735b89b87237e6, type: 3}
     - target: {fileID: 3578031295969638396, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
       propertyPath: CorePlayer
       value: 
