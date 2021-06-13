@@ -79,8 +79,8 @@ public class CorePlayer : MonoBehaviour {
 		float magnitude = new Vector2(vel.x, vel.z).magnitude;
 		if (magnitude < MoveSpeed)
 			coreMovement.AddVelocity(delta * MoveSpeed);
-		else
-			coreMovement.AddVelocity(delta * magnitude);
+		//else
+		//	coreMovement.AddVelocity(delta * magnitude);
 
 		if (throwBall) {
 			throwBall = false;

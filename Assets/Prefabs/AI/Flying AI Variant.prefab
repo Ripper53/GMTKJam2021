@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
+  BopSpeed: 2
   Height: 1
 --- !u!1001 &9217488209541929190
 PrefabInstance:

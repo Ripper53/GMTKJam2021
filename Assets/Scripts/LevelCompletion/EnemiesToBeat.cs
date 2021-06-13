@@ -2,6 +2,7 @@ using UnityEngine;
 using AI;
 
 public class EnemiesToBeat : MonoBehaviour {
+    public GameObject Flag;
     public Wave[] Waves;
 
     [System.Serializable]
@@ -19,9 +20,8 @@ public class EnemiesToBeat : MonoBehaviour {
         waveIndex += 1;
         if (waveIndex < Waves.Length)
             SetupWave(Waves[waveIndex]);
-        else {
-            // LOAD NEXT LEVEL?!
-        }
+        else
+            Flag.SetActive(true);
     }
 
     private void SetupWave(Wave wave) {

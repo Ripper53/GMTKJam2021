@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max: 3
+  InvulnerableTime: 0.5
 --- !u!136 &5325995631281075232
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -309,6 +310,10 @@ PrefabInstance:
     - target: {fileID: 2776830720122256973, guid: 2f099c8006c6d9a4aa4e2c0a3b4cc491, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2776830720122256975, guid: 2f099c8006c6d9a4aa4e2c0a3b4cc491, type: 3}
+      propertyPath: Drag
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2776830720122256975, guid: 2f099c8006c6d9a4aa4e2c0a3b4cc491, type: 3}
       propertyPath: Rigidbody
