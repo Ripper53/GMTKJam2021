@@ -7,7 +7,7 @@ public class CoreView : MonoBehaviour {
 
 	public Rigidbody targetRb;
 
-	void Start() {
+	protected void Start() {
 		Cursor.lockState = CursorLockMode.Locked;
 		if (target != null) {
 			rootZ = target.GetChild(0);
@@ -32,7 +32,7 @@ public class CoreView : MonoBehaviour {
 		flagOverride = false;
 	}
 
-	void Update() {
+	protected void Update() {
 		if (!flagOverride) {
 			d1.y += Input.GetAxis("Mouse X") * aSensitivity.y;
 			d1.x += Input.GetAxis("Mouse Y") * aSensitivity.x;
@@ -48,7 +48,7 @@ public class CoreView : MonoBehaviour {
 		rootX.transform.Rotate(-d1.x * aStrength.x, 0, 0); d1.x *= 1 - aStrength.x;
 	}
 
-	private void FixedUpdate() {
+	protected void FixedUpdate() {
 		targetRb.transform.rotation = target.rotation;
 	}
 
@@ -59,5 +59,6 @@ public class CoreView : MonoBehaviour {
 	public Vector3 GetSpawnDirection() {
 		return rootX.forward;
 	}
+
 }
 

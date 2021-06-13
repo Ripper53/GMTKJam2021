@@ -8,22 +8,34 @@ namespace AI {
         public float DetectionRadius, DetectionDistance;
 
         public override void Execute(AIToken token) {
-            Vector3 dir = GetBallTrajectory();
+            Vector3 dir = token.Source.Ball.GetTrajectory();
 
-            Vector3 pos = token.Source.GetBallPosition();
+            Vector3 ballPos = token.Source.Ball.GetPosition();
 
-            if (CheckIfInCone(pos, dir, token.Source.Rigidbody.position)) {
-                Vector3 rotation = token.Source.Transform.eulerAngles;
-                rotation.y = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-                token.Source.Transform.rotation = Quaternion.Euler(rotation);
+            if (CheckIfInCone(ballPos, dir, token.Source.Rigidbody.position)) {
+#if UNITY_EDITOR
+                Debug.Log("RE");
+#endif
+                token.Source.Transform.forward = new Vector3(-dir.x, 0f, -dir.z);
+                /*Vector3 rotation = token.Source.Transform.eulerAngles;
+                rotation.y = (Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) + 180f;
+                token.Source.Transform.rotation = Quaternion.Euler(rotation);*/
+
+                Vector3 predictPos = ballPos + (dir * 10f);
+
+                //dir = predictPos - token.Source.Rigidbody.position;
+                dir = new Vector3(-dir.z, 0f, dir.x);
+                Vector3 diff = ballPos - token.Source.Rigidbody.position;
+                if (diff.x < 0f ||
+                    diff.z < 0f)
+                    dir.z = -dir.z;
+                //dir.y = 0f;
 
                 DashAction.Direction = token.Source.Transform.InverseTransformDirection(dir);
                 DashAction.Execute(token);
             }
 
         }
-
-        private Vector3 GetBallTrajectory() => new Vector3(0f, 0f, 1f);
 
         private bool CheckIfInCone(Vector3 coneOrigin, Vector3 coneDir, Vector3 position) {
             float coneDis = Vector3.Dot(position - coneOrigin, coneDir);

@@ -23,21 +23,32 @@ namespace AI {
         }
 
         public Vector3 GetPlayerPosition() {
-            // TO DO
-            return new Vector3(0f, 0f, 0f);
+            return Player.GetPosition();
         }
 
         public Vector3 GetBallPosition() {
-            // TO DO
-            return new Vector3(0f, 0f, 0f);
+            return Ball.GetPosition();
         }
 
         /// <summary>
         /// The direction the player is, NOT NORMALIZED!
         /// </summary>
-        public Vector3 GetToPlayerDirection() {
-            // TO DO
+        public Vector3 GetPlayerTowardsDirection() {
             return GetPlayerPosition() - Rigidbody.position;
+        }
+
+        public void Disable() {
+            enabled = false;
+            Rigidbody.detectCollisions = false;
+            Rigidbody.isKinematic = true;
+            Rigidbody.velocity = Vector3.zero;
+        }
+
+        public delegate void KilledEvent(ArtificialIntelligence source);
+        public event KilledEvent Killed;
+        public void Kill() {
+            gameObject.SetActive(false);
+            Killed?.Invoke(this);
         }
 
     }

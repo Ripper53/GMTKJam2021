@@ -64,6 +64,7 @@ public class CoreBall : MonoBehaviour {
     }
 
     public Vector3 GetPosition() => transform.position;
+    public Vector3 GetTrajectory() => target.velocity.normalized;
 
     private IEnumerator GrabCooldown() {
         yield return new WaitForSeconds(0.1f);
