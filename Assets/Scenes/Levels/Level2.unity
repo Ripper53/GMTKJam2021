@@ -1110,6 +1110,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag
       objectReference: {fileID: 0}
+    - target: {fileID: 2711115265733469696, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
+      propertyPath: Music
+      value: 
+      objectReference: {fileID: 8300000, guid: 558806f3e8dcb3b468378b4371e7aaec, type: 3}
+    - target: {fileID: 3578031295969638396, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
+      propertyPath: CorePlayer
+      value: 
+      objectReference: {fileID: 766653479}
     - target: {fileID: 5712147515645795490, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
       propertyPath: m_RootOrder
       value: 1

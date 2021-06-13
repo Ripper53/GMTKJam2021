@@ -236,6 +236,14 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: dcf9b38f918b00a4ab09e066ac5a24f8, type: 3}
     - target: {fileID: 8642219737549722413, guid: 04644c33df12d824789cff300692fb0f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -266,6 +274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026524577363941027}
     m_Modifications:
+    - target: {fileID: 7698425972569484872, guid: ea3d3e7b25288f54f93e22e28f81c9f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b80528253a98f224daa85497a60271ff, type: 2}
     - target: {fileID: 7698425972569484874, guid: ea3d3e7b25288f54f93e22e28f81c9f9, type: 3}
       propertyPath: m_RootOrder
       value: 0

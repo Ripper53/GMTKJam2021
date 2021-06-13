@@ -8,6 +8,10 @@ namespace AI {
         public float Speed;
         public float Cooldown;
 
+        [Header("Audio")]
+        public ArtificialIntelligenceAudio ArtificialIntelligenceAudio;
+        public AudioClip ShootAudioClip;
+
         private bool isOn = true;
 
         public override void Execute(AIToken token) {
@@ -17,6 +21,7 @@ namespace AI {
             Rigidbody projectile = Instantiate(ProjectilePrefab, Origin.position, Origin.rotation);
             projectile.gameObject.SetActive(true);
             projectile.velocity = GetDirection(token) * Speed;
+            ArtificialIntelligenceAudio.Play(ShootAudioClip);
         }
 
         protected abstract Vector3 GetDirection(AIToken token);

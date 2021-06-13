@@ -47,6 +47,8 @@ MonoBehaviour:
   Origin: {fileID: 3248774440214341629}
   Speed: 20
   Cooldown: 1
+  ArtificialIntelligenceAudio: {fileID: 6955615376826765991}
+  ShootAudioClip: {fileID: 8300000, guid: 9d1e6c3934bef894fad4574f5bd9c7df, type: 3}
 --- !u!1001 &649103861299845201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +132,14 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f0700f979f006af458103807f8a141b8, type: 3}
     - target: {fileID: 8642219737549722413, guid: 04644c33df12d824789cff300692fb0f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -145,3 +155,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7240919527030544136, guid: 04644c33df12d824789cff300692fb0f, type: 3}
   m_PrefabInstance: {fileID: 649103861299845201}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6955615376826765991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+  m_PrefabInstance: {fileID: 649103861299845201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866bf4a689c9db843a825fe403680684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

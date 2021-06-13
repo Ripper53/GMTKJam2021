@@ -277,6 +277,14 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603584498573085430, guid: 04644c33df12d824789cff300692fb0f, type: 3}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bcf323e694668c438e8bacccfb8ce04, type: 3}
     - target: {fileID: 8642219737549722413, guid: 04644c33df12d824789cff300692fb0f, type: 3}
       propertyPath: m_Sprite
       value: 

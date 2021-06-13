@@ -1,17 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class StartPause : MonoBehaviour {
-    public float Time = 3f;
+    public int Seconds = 3;
+    public TextMeshProUGUI CountdownText;
 
     protected void Start() {
-        UnityEngine.Time.timeScale = 0f;
+        Time.timeScale = 0f;
         StartCoroutine(Begin());
     }
 
     private IEnumerator Begin() {
-        yield return new WaitForSecondsRealtime(Time);
-        UnityEngine.Time.timeScale = 1f;
+        for (int i = 3; i > 0; i--) {
+            CountdownText.text = i.ToString();
+            yield return new WaitForSecondsRealtime(1f);
+        }
+        CountdownText.enabled = false;
+        Time.timeScale = 1f;
     }
 
 }

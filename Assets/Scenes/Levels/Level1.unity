@@ -881,6 +881,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2711115265733469696, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
+      propertyPath: Music
+      value: 
+      objectReference: {fileID: 8300000, guid: ac18a9290a46ea14bb242bd63e6fe0e8, type: 3}
+    - target: {fileID: 3578031295969638396, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
+      propertyPath: CorePlayer
+      value: 
+      objectReference: {fileID: 41586447}
     - target: {fileID: 5712147515645795490, guid: c6cc64b43df4b1f44ababd309553704a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2398,6 +2406,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 691028094342804753, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 953774280014066817, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
       propertyPath: Flag
       value: 
@@ -2478,6 +2490,10 @@ PrefabInstance:
       propertyPath: Waves.Array.data[1].Enemies.Array.data[7]
       value: 
       objectReference: {fileID: 2085447011}
+    - target: {fileID: 1383177252486580264, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2064726657930311471, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2522,6 +2538,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3383043698106109136, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4458577571293026604, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 25
@@ -2549,6 +2569,10 @@ PrefabInstance:
     - target: {fileID: 5330658219647404469, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
       propertyPath: m_Name
       value: Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476367499794765880, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b5a8d21b2bca14b9a114b68a4fdc5e, type: 3}

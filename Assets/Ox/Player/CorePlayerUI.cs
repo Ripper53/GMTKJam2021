@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using AI;
+using UnityEngine.SceneManagement;
 
 public class CorePlayerUI : MonoBehaviour {
     public Health Health;
@@ -18,8 +19,12 @@ public class CorePlayerUI : MonoBehaviour {
     public Sprite ThrowingSprite;
     public Sprite DetachSprite;
 
+    [Header("Lives")]
+    public Image[] Lives;
+
     protected void Awake() {
         Health.Damaged += Health_Damaged;
+        Health.Died += Health_Died;
 
         CorePlayer.ChangedChargeDelta += CorePlayer_ChangedChargeDelta;
         CorePlayer.Throwed += CorePlayer_Throwed;
@@ -31,7 +36,16 @@ public class CorePlayerUI : MonoBehaviour {
     }
 
     private void Health_Damaged(Health source, int damage) {
+        int v = source.Value;
+        if (v < 0)
+            v = 0;
+        for (int i = Lives.Length - 1; i > -1 + v; i--) {
+            Lives[i].enabled = false;
+        }
         SetAlpha(HurtAlpha);
+    }
+    private void Health_Died(Health source) {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void CorePlayer_ChangedChargeDelta(CorePlayer source, float chargeDelta) {

@@ -41,11 +41,15 @@ public class CorePlayer : MonoBehaviour {
 		coreMovement = GetComponent<CoreMovement>();
 	}
 
+	[System.NonSerialized]
+	public bool StopInput = false;
+
 	private bool throwBall = false;
 	protected void Update () {
 		if (dashing)
 			DashToBall();
 
+		if (StopInput) return;
 		if (Input.GetMouseButtonDown(0)) {
 			if (dashing) {
 				chargeCatch = true;
