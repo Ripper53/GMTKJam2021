@@ -33,7 +33,7 @@ namespace AI {
         /// <summary>
         /// The direction the player is, NOT NORMALIZED!
         /// </summary>
-        public Vector3 GetPlayerTowardsDirection() {
+        public Vector3 GetDirectionTowardsPlayer() {
             return GetPlayerPosition() - Rigidbody.position;
         }
 

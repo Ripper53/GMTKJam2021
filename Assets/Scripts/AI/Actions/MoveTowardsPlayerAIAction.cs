@@ -5,7 +5,7 @@ namespace AI {
         public float Speed;
 
         public override void Execute(AIToken token) {
-            Vector3 dir = token.Source.GetPlayerTowardsDirection().normalized;
+            Vector3 dir = token.Source.GetDirectionTowardsPlayer().normalized;
             token.Source.CoreMovement.AddVelocity(dir);
         }
 

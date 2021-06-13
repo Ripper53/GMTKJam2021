@@ -9,7 +9,7 @@ namespace AI {
 
         protected override Vector3 GetDirection(AIToken token) {
             dir = -dir;
-            return Quaternion.Euler(DirectionOffset * dir) * token.Source.GetPlayerTowardsDirection().normalized;
+            return Quaternion.Euler(DirectionOffset * dir) * token.Source.GetDirectionTowardsPlayer().normalized;
         }
 
     }

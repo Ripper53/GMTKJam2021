@@ -10,7 +10,7 @@ namespace AI {
         public override void Execute(AIToken token) {
             x = (x + Speed * token.DeltaTime) % (2f * Mathf.PI);
             float y = Mathf.Sin(x) * (Speed * Height);
-            token.Source.CoreMovement.AddVelocity((token.Source.GetPlayerTowardsDirection().normalized * Speed) + new Vector3(0f, y, 0f));
+            token.Source.CoreMovement.AddVelocity((token.Source.GetDirectionTowardsPlayer().normalized * Speed) + new Vector3(0f, y, 0f));
         }
 
     }
